@@ -11,18 +11,39 @@
 npm i simple-vue3-tags-input
 ```
 
+
+
 ## 使用
+
+```js
+import { createApp } from 'vue'
+import './style.css'
+import App from './App.vue'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+import 'simple-vue3-tags-input/dist/style.css'
+import {TagInput} from 'simple-vue3-tags-input'
+
+createApp(App)
+    .use(ElementPlus)
+    .use(TagInput)
+    .mount('#app')
+```
+
+
+
+
 
 ```vue
 const selectedTags = ref<string[]>(['Vue', 'React', 'Angular']);
-
+const options = ref(['Vue', 'React', 'Angular','svelte','vue3','vite','webpack',]);
 ...
 
-<tag-input tag-color="#ef4444"
-           width="600px"
-           v-model:value="selectedTags"
-           :options="options"
-           placeholder="请添加标签"></tag-input>
+ <tag-input tag-color="#ef4444"
+                  width="400px"
+                  v-model:value="selectedTags"
+                  :options="options"
+                  placeholder="请添加标签"></tag-input>
 ```
 
 ## Props
