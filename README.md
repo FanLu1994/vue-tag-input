@@ -1,4 +1,4 @@
-# ElTagInput
+# simple-vue3-tags-input
 
 基于vue+vite+elementplus+vueuse实现的一个标签输入器
 
@@ -8,6 +8,7 @@
 ## 安装
 
 ```bash
+npm i simple-vue3-tags-input
 ```
 
 ## 使用

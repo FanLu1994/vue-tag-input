@@ -1,6 +1,5 @@
 {
-  "name": "tag-input",
-  "private": true,
+  "name": "simple-vue3-tags-input",
   "version": "0.0.1",
   "type": "module",
   "author": "Axiss",
