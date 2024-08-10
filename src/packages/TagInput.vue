@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, ref, nextTick, onMounted} from "vue";
+import {computed, ref, nextTick, onMounted,watch} from "vue";
 import {onClickOutside,useVModel} from "@vueuse/core";
 
 const props = withDefaults(defineProps<{
@@ -7,6 +7,7 @@ const props = withDefaults(defineProps<{
   tagColor: string;
   width: string;
   placeholder: string;
+  options: string[];
 }>(),
     {
       width: '100%',
@@ -15,15 +16,11 @@ const props = withDefaults(defineProps<{
 );
 
 const emit = defineEmits(['update:value']);
-const selectData = ref([])
+const selectData = useVModel(props, 'value', emit,{passive: true})
 
 const isEdit = ref(false);
 const inputRef = ref(null);
 const selectRef = ref(null);
-
-onMounted(()=>{
-  selectData.value = props.value;
-})
 
 // compute the tag input style
 const tagInputStyle = computed(()=>{
@@ -60,7 +57,7 @@ const getLightenColor = (color, percent) => {
   return `#${rHex}${gHex}${bHex}`;
 }
 
-const onClick = async (e: PointerEvent) => {
+const onClick = async () => {
   isEdit.value = true;
   await nextTick(); // 等待 DOM 更新
   selectRef.value?.focus(); // 聚焦到 select 输入框
@@ -79,27 +76,20 @@ onClickOutside(inputRef, (evt)=>{
 
 
 // Method to handle Enter key for adding a new tag
-const addTag = (e: KeyboardEvent) => {
-  const target = e.target as HTMLInputElement;
-  if (target.value) {
-    if (selectData.value.includes(target.value)) {
+const addTag = (e) => {
+  if (e.target.value) {
+    if (selectData.value.includes(e.target.value)) {
       selectRef.value?.blur();
       return;
     }
 
-    selectData.value.push(target.value);
-    emit('update:value', selectData.value);
+    selectData.value.push(e.target.value);
     setTimeout(() => {
-      target.value = '';
+      e.target.value = '';
       selectRef.value?.blur();
     }, 0);
   }
 };
-
-// Method to handle select change
-const onSelectChange = (value: string[]) => {
-  emit('update:value', value);
-}
 
 </script>
 
@@ -117,10 +107,9 @@ const onSelectChange = (value: string[]) => {
                  multiple
                  filterable
                  allow-create
-                 @change="onSelectChange"
                  @keyup.enter="addTag"
                  :placeholder="placeholder">
-        <el-option v-for="tag in selectData"
+        <el-option v-for="tag in options"
                    :key="tag" :label="tag" :value="tag">
         </el-option>
       </el-select>

@@ -18,14 +18,16 @@ const selectedTags = ref<string[]>(['Vue', 'React', 'Angular']);
 
 ...
 
-<el-tag-input tag-color="#ef4444" 
-              width="600px" 
-              v-model:value="selectedTags" 
-              placeholder="请添加标签"></el-tag-input>
+<tag-input tag-color="#ef4444"
+           width="600px"
+           v-model:value="selectedTags"
+           :options="options"
+           placeholder="请添加标签"></tag-input>
 ```
 
-## 参数
+## Props
 - `tag-color` 标签颜色
 - `width` 宽度
 - `placeholder` 占位符
 - `v-model:value` 绑定值
+- `options` 可选项
