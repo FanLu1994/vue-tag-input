@@ -20,9 +20,19 @@ export default defineConfig({
   build:{
     outDir:"dist",
     lib:{
-        entry:resolve(__dirname,"src/packages/index.ts"),
+        entry:resolve(__dirname,"packages/index.ts"),
         name:"TagInput",
         fileName:"index"
+    },
+    rollupOptions:{
+      external:["vue","element-plus"],
+      output:{
+        globals:{
+          vue:"Vue",
+          "element-plus":"ElementPlus"
+        }
+      }
     }
-  }
+  },
+
 })
