@@ -121,7 +121,7 @@ const addTag = (e) => {
 
 </template>
 
-<style scoped lang="scss">
+<style scoped >
 .el-tag-input {
   display: flex;
   align-content: center;
@@ -141,10 +141,10 @@ const addTag = (e) => {
   border: 1px solid transparent;
   cursor: pointer;
   overflow: hidden;
+}
 
-  &:hover{
-    border: 1px solid #ddd;
-  }
+.tag-item-wrapper:hover{
+  border: 1px solid #ddd;
 }
 
 .placeholder{
