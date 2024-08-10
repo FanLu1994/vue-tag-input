@@ -1,0 +1,38 @@
+{
+  "name": "tag-input",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "author": "Axiss",
+  "keywords": [
+    "vite",
+    "vue",
+    "tag",
+    "input"
+  ],
+  "description": "A tag input component for Vue 3",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "lib": "vite build --mode lib"
+  },
+  "dependencies": {
+    "@vueuse/core": "^10.11.1",
+    "element-plus": "^2.8.0",
+    "vue": "^3.4.35"
+  },
+  "devDependencies": {
+    "@types/node": "^22.2.0",
+    "@vitejs/plugin-vue": "^5.1.2",
+    "sass": "^1.77.8",
+    "sass-loader": "^16.0.0",
+    "typescript": "^5.5.3",
+    "unplugin-auto-import": "^0.18.2",
+    "unplugin-vue-components": "^0.27.3",
+    "vite": "^5.4.0",
+    "vue-tsc": "^2.0.29"
+  }
+}
